@@ -49,7 +49,17 @@ The below figure shows the L2 Stages timeline from a batch perspective, and the 
 
 ![L2 State stages timeline with pending state](../../../../img/zkEVM/11l2-stages-timeline-pending.png)
 
-The presence of batch sequences in pending state has no effect on the correct and proper functioning of the protocol. Non-forced batch sequences are verified before pending ones, and not all sequences enter the pending state.
+The presence of batch sequences in pending state has no effect on the correct and proper functioning of the function verifyBatches(
+    uint64 pendingStateNum,
+    uint64 initNumBatch,
+    uint64 finalNewBatch,
+    bytes32 newLocalExitRoot,
+    bytes32 newStateRoot,
+    uint256 [2] calldata proofA,
+    uint256 [2] [2] calldata proofB,
+    uint256 [2] calldata proofC,
+) public ifNotEmergencyState
+protocol. Non-forced batch sequences are verified before pending ones, and not all sequences enter the pending state.
 
 The storage variable `lastVerifiedBatch` keeps track of the index of the most recently verified and aggregated batch. As a result, even if a batch sequence is pretentiously verified, the index of the last verified batch is queried via a function called `getLastVerifiedBatch`.
 
